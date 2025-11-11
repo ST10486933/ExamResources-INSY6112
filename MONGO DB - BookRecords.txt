@@ -1,0 +1,67 @@
+Microsoft Windows [Version 10.0.26100.4946]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Program Files\MongoDB\Server\8.1\bin>mongosh
+Current Mongosh Log ID: 68f2016602e481f383eec4a8
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.6
+Using MongoDB:          8.1.3
+Using Mongosh:          2.5.6
+mongosh 2.5.8 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-10-17T10:15:29.796+02:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use bookstore_st10486933
+switched to db bookstore_st10486933
+bookstore_st10486933> db.bookrecords.insert({"Title":"The Hidden Path", "Author":"Lerato Maseko", "PublishDate": "2018-05-12", "Category":"Fiction"})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('68f2020c02e481f383eec4a9') }
+}
+bookstore_st10486933> db.bookrecords.insert({"Title":"Tech Revolution", "Author":"David Khumalo", "PublishDate": "2022-09-28", "Category":"Technology"})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('68f2028902e481f383eec4aa') }
+}
+bookstore_st10486933> db.bookrecords.find()
+[
+  {
+    _id: ObjectId('68f2020c02e481f383eec4a9'),
+    Title: 'The Hidden Path',
+    Author: 'Lerato Maseko',
+    PublishDate: '2018-05-12',
+    Category: 'Fiction'
+  },
+  {
+    _id: ObjectId('68f2028902e481f383eec4aa'),
+    Title: 'Tech Revolution',
+    Author: 'David Khumalo',
+    PublishDate: '2022-09-28',
+    Category: 'Technology'
+  }
+]
+bookstore_st10486933> db.bookrecords.find({"Category": "Technology"})
+[
+  {
+    _id: ObjectId('68f2028902e481f383eec4aa'),
+    Title: 'Tech Revolution',
+    Author: 'David Khumalo',
+    PublishDate: '2022-09-28',
+    Category: 'Technology'
+  }
+]
+bookstore_st10486933> db.bookrecords.find({"PublishDate": {$gte: "2020-01-01", $lte: "2023-12-31"}})
+[
+  {
+    _id: ObjectId('68f2028902e481f383eec4aa'),
+    Title: 'Tech Revolution',
+    Author: 'David Khumalo',
+    PublishDate: '2022-09-28',
+    Category: 'Technology'
+  }
+]

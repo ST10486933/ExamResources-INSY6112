@@ -1,0 +1,67 @@
+Microsoft Windows [Version 10.0.26100.4946]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Program Files\MongoDB\Server\8.1\bin>mongosh
+Current Mongosh Log ID: 6915996965beb5d06aeec4a8
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.6
+Using MongoDB:          8.1.3
+Using Mongosh:          2.5.6
+mongosh 2.5.9 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-11-13T07:51:11.517+02:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use gym_ST10486933
+switched to db gym_ST10486933
+gym_ST10486933> db.userProfiles.insert({"Name":"Dominic", "Surname":"Badeaux", "DateOfBirth":"1982-09-04", "FitnessLevel":"1"})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('691599ca65beb5d06aeec4a9') }
+}
+gym_ST10486933> db.userProfiles.insert({"Name":"John", "Surname":"Dlamini", "DateOfBirth":"1974-05-18", "FitnessLevel":"2"})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('691599e365beb5d06aeec4aa') }
+}
+gym_ST10486933> db.userProfiles.find()
+[
+  {
+    _id: ObjectId('691599ca65beb5d06aeec4a9'),
+    Name: 'Dominic',
+    Surname: 'Badeaux',
+    DateOfBirth: '1982-09-04',
+    FitnessLevel: '1'
+  },
+  {
+    _id: ObjectId('691599e365beb5d06aeec4aa'),
+    Name: 'John',
+    Surname: 'Dlamini',
+    DateOfBirth: '1974-05-18',
+    FitnessLevel: '2'
+  }
+]
+gym_ST10486933> db.userProfiles.find({FitnessLevel: "2"})
+[
+  {
+    _id: ObjectId('691599e365beb5d06aeec4aa'),
+    Name: 'John',
+    Surname: 'Dlamini',
+    DateOfBirth: '1974-05-18',
+    FitnessLevel: '2'
+  }
+]
+gym_ST10486933> db.userProfiles.find({DateOfBirth: {$gte: "1980-01-01", $lte: "1982-12-31"}})
+[
+  {
+    _id: ObjectId('691599ca65beb5d06aeec4a9'),
+    Name: 'Dominic',
+    Surname: 'Badeaux',
+    DateOfBirth: '1982-09-04',
+    FitnessLevel: '1'
+  }
+]
